@@ -27,10 +27,20 @@ def inserir_dados_arquivo5(caminho_arquivo, cursor):
     except Exception as e:
         print(f"Erro ao inserir dados do arquivo {caminho_arquivo}: {e}")
 
-# Função para ler os dados de qualquer tabela
+# Função para ler todos os dados de qualquer tabela
 def ler_dados(tabela, cursor):
     try:
         cursor.execute(f"SELECT * FROM {tabela}")
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+    except Exception as e:
+        print(f"Erro ao ler dados da tabela {tabela}: {e}")
+
+# Função para ler uma linha específica de qualquer tabela
+def ler_linha_tabela(tabela, id, cursor):
+    try:
+        cursor.execute(f"SELECT * FROM {tabela} WHERE ID = {id}")
         rows = cursor.fetchall()
         for row in rows:
             print(row)
